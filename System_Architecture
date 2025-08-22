@@ -1,0 +1,189 @@
+1. System Architecture Requirements
+  Overall Architecture.
+  Microservices-based architecture for scalability and maintainability.
+  RESTful API design following OpenAPI 3.0 specifications.
+  Mobile-first approach with responsive web admin panel.
+  Real-time capabilities using WebSocket connections for live updates.
+  Cloud-native deployment with containerization support.
+
+2.Core Components
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Customer      │    │ Service Provider│    │   Admin Panel   │
+│   Web App       │    │   Web App       │    │   Web App       │
+│   (React.js)    │    │   (React.js)    │    │   (React.js)    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 │
+         ┌─────────────────────────────────────────────────────┐
+         │              API Gateway (Express.js)               │
+         └─────────────────────────────────────────────────────┘
+                                 │
+         ┌─────────────────────────────────────────────────────┐
+         │                Backend Services                     │
+         │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐   │
+         │  │Auth Service │ │Booking Svc  │ │Payment Svc  │   │
+         │  └─────────────┘ └─────────────┘ └─────────────┘   │
+         └─────────────────────────────────────────────────────┘
+                                 │
+         ┌─────────────────────────────────────────────────────┐
+         │     MySQL Database + Redis Cache + File Storage    │
+         └─────────────────────────────────────────────────────┘
+
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Customer App  │    │ Service Provider│    │   Admin Panel   │
+│  (React Native) │    │ App (React Native)│  │   (React.js)    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 │
+         ┌─────────────────────────────────────────────────────┐
+         │              API Gateway (Express.js)               │
+         └─────────────────────────────────────────────────────┘
+                                 │
+         ┌─────────────────────────────────────────────────────┐
+         │                Backend Services                     │
+         │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐   │
+         │  │Auth Service │ │Booking Svc  │ │Payment Svc  │   │
+         │  └─────────────┘ └─────────────┘ └─────────────┘   │
+         └─────────────────────────────────────────────────────┘
+                                 │
+         ┌─────────────────────────────────────────────────────┐
+         │                   Database Layer                    │
+         │     MySQL + Redis Cache + File Storage             │
+         └─────────────────────────────────────────────────────┘
+
+-------------------------------------------------------------------------------------------
+2. Functional Requirements
+2.1 User Management
+  Multi-role authentication (Customer, Service Provider, Admin)
+  Phone number-based registration with OTP verification
+  Social login integration (Google, Facebook optional)
+  Profile management with image upload capabilities
+  Address management supporting multiple saved addresses
+  User verification system for service providers
+
+2.2 Service Discovery & Management
+  Location-based service search within configurable radius (2-10 km)
+  Category-wise service browsing with 8 main categories
+Real-time provider availability status updates
+Advanced filtering (price, rating, distance, availability)
+Service provider profiles with photos, reviews, experience
+Dynamic pricing support (fixed, hourly, per-sqft, negotiable)
+
+2.3 Booking System
+Multi-step booking flow with date/time selection
+Calendar integration showing provider availability
+Booking confirmation with SMS/email notifications
+Real-time booking status tracking (pending → confirmed → completed)
+Reschedule/cancellation with policy enforcement
+Special instructions and requirement capture
+
+2.4 Payment System
+Multiple payment methods (UPI, Credit/Debit Card, Net Banking, Cash)
+Razorpay integration for online payments
+Split payment logic (platform commission + provider amount)
+Automatic refund processing for cancellations
+Payment receipt generation and email delivery
+Wallet system for storing credits/cashback
+
+2.5 Rating & Review System
+Post-service rating (1-5 stars) with comments
+Photo upload in reviews for authenticity
+Review moderation to prevent fake reviews
+Aggregate rating calculation for providers
+Review response capability for service providers
+
+2.6 Communication System
+In-app messaging between customers and providers
+Push notifications for booking updates
+SMS notifications for critical updates
+Real-time status updates via WebSocket
+Customer support chat integration
+
+3. Non-Functional Requirements
+3.1 Performance Requirements
+API response time: < 500ms for 95% of requests
+App loading time: < 3 seconds for initial load
+Database query optimization: < 100ms for location-based searches
+Image compression: Automatic resizing and optimization
+Concurrent users: Support 1000+ simultaneous users
+Search results: Display within 2 seconds
+
+3.2 Scalability Requirements
+Horizontal scaling capability for backend services
+Database sharding support for geographic distribution
+CDN integration for image and static content delivery
+Auto-scaling based on traffic patterns
+Load balancing across multiple server instances
+
+3.3 Security Requirements
+JWT token authentication with refresh token mechanism
+API rate limiting to prevent abuse
+Data encryption in transit (HTTPS) and at rest
+PII data protection following Indian data privacy laws
+SQL injection prevention using parameterized queries
+XSS and CSRF protection for web components
+Secure payment processing with PCI DSS compliance
+
+3.4 Reliability Requirements
+99.5% uptime service level agreement
+Automatic failover for critical services
+Database backup every 4 hours with point-in-time recovery
+Error logging and monitoring with alert system
+Graceful degradation when services are unavailable
+
+
+5.1 Payment Gateway Integration
+Primary: Razorpay for comprehensive payment solutions
+UPI Integration: Direct UPI payment processing
+Webhook handling for payment status updates
+Refund API integration for automated refunds
+Payment analytics and reporting capabilities
+
+5.3 Communication Services
+SMS Gateway: TextLocal/MSG91 for OTP and notifications
+Email Service: SendGrid/Amazon SES for transactional emails
+Push Notifications: Firebase Cloud Messaging (FCM)
+WhatsApp Business API: For customer support (future)
+
+5.4 File Storage & CDN
+Image storage: AWS S3/DigitalOcean Spaces
+CDN distribution: CloudFlare for fast content delivery
+Image optimization: Automatic compression and resizing
+Backup strategy: Multi-region redundancy
+
+7.2 Real-time Requirements
+WebSocket connections for live booking updates
+Push notification delivery within 5 seconds
+Real-time provider location tracking during service
+Live chat messaging between users
+
+8. Security & Compliance Requirements
+8.1 Data Protection
+GDPR compliance for user data handling
+Indian IT Act compliance for local regulations
+PII data encryption using AES-256
+Secure API endpoints with proper authentication
+Regular security audits and penetration testing
+
+8.2 Payment Security
+PCI DSS Level 1 compliance for payment processing
+Tokenization of sensitive payment data
+3D Secure authentication for card payments
+Fraud detection mechanisms
+Secure webhook verification for payment callbacks
+
+9. Monitoring & Analytics Requirements
+9.1 Application Monitoring
+Real-time error tracking with Sentry/Bugsnag
+Performance monitoring for API response times
+User behavior analytics with custom events
+Business metrics dashboard for key performance indicators
+
+9.2 Business Analytics
+Booking conversion rates tracking
+Provider performance metrics monitoring
+Revenue analytics with commission calculations
+Customer retention analysis and churn prediction
+Market penetration reports for different Pune areas
