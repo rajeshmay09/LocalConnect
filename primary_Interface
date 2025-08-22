@@ -1,0 +1,123 @@
+2.1 Customer Web App (Primary Interface)
+javascript
+// Customer App Features
+const customerFeatures = {
+  authentication: ["Phone/Email login", "OTP verification", "Social login"],
+  serviceDiscovery: ["Location-based search", "Category filtering", "Provider comparison"],
+  booking: ["Date/time selection", "Service customization", "Payment integration"],
+  management: ["Booking history", "Address book", "Favorites"],
+  communication: ["Provider chat", "Support system", "Notifications"]
+};
+---------------------------------------------------
+2.2 Service Provider Web App (Provider Portal)
+javascript
+// Provider App Features  
+const providerFeatures = {
+  profile: ["Business setup", "Service listing", "Portfolio upload"],
+  bookings: ["Request management", "Schedule calendar", "Earnings dashboard"],
+  customers: ["Customer communication", "Service history", "Ratings view"],
+  business: ["Analytics reports", "Commission tracking", "Payout management"]
+};
+---------------------------------------------------
+2.3 Admin Panel (Management Dashboard)
+javascript
+// Admin Features
+const adminFeatures = {
+  userManagement: ["Customer oversight", "Provider verification", "User analytics"],
+  serviceManagement: ["Category management", "Pricing control", "Quality assurance"],
+  businessOps: ["Booking monitoring", "Dispute resolution", "Revenue tracking"],
+  marketing: ["Promotional campaigns", "Referral programs", "Area expansion"]
+};
+---------------------------------------------------
+3. Technology Stack (Web-Focused)
+3.1 Frontend Stack
+json
+{
+  "framework": "React.js 18+",
+  "routing": "React Router v6",
+  "stateManagement": "Redux Toolkit + RTK Query",
+  "uiLibrary": "Material-UI v5 / Chakra UI",
+  "maps": "Google Maps JavaScript API",
+  "forms": "React Hook Form + Yup validation",
+  "dateTime": "Date-fns / Moment.js",
+  "charts": "Chart.js / Recharts",
+  "notifications": "React-Toastify",
+  "http": "Axios"
+}
+---------------------------------------------------
+3.2 Backend Stack
+json
+{
+  "runtime": "Node.js 18+",
+  "framework": "Express.js 4.18+",
+  "database": "MySQL 8.0+",
+  "orm": "Prisma / Sequelize",
+  "cache": "Redis 6.0+",
+  "auth": "JWT + bcryptjs",
+  "validation": "Joi / express-validator",
+  "fileUpload": "Multer + Sharp",
+  "email": "Nodemailer + SendGrid",
+  "sms": "Twilio / MSG91",
+  "payments": "Razorpay SDK"
+}
+---------------------------------------------------
+
+4.2 Location Services (Web)
+javascript
+// Web Geolocation Implementation
+const locationFeatures = {
+  browserGeolocation: "HTML5 Geolocation API",
+  addressAutocomplete: "Google Places Autocomplete",
+  mapIntegration: "Google Maps Embed API",
+  distanceCalculation: "Google Distance Matrix API",
+  areaDetection: "Reverse geocoding for Pune areas"
+};
+---------------------------------------------------
+4.3 Real-time Features (Web)
+javascript
+// WebSocket Implementation for Real-time Updates
+const realTimeFeatures = {
+  bookingUpdates: "Socket.io for live status updates",
+  notifications: "Web Push Notifications API",
+  providerTracking: "Live location updates during service",
+  chatSystem: "Real-time messaging between users",
+  adminAlerts: "Instant admin notifications for issues"
+};
+---------------------------------------------------
+
+. Web App URLs Structure
+5.1 Customer Web App (customerapp.localconnect.pune)
+text
+/                          # Homepage with service categories
+/login                     # Customer login/signup
+/services/:category        # Service category listing
+/providers/:serviceId      # Provider selection for service
+/book/:providerId         # Booking flow
+/booking/:bookingId       # Booking details and tracking
+/profile                  # Customer profile and addresses
+/bookings                 # Booking history
+/support                  # Customer support
+
+----------------------------------------------------------
+5.2 Service Provider Web App (provider.localconnect.pune)
+text
+/                         # Provider dashboard
+/login                    # Provider login/signup
+/profile                  # Business profile setup
+/services                 # Service management
+/bookings                 # Booking requests and management
+/calendar                 # Availability calendar
+/earnings                 # Financial dashboard
+/customers               # Customer management
+
+---------------------------------------------------------------------
+5.3 Admin Panel (admin.localconnect.pune)
+text
+/                        # Admin dashboard with key metrics
+/users                   # Customer management
+/providers               # Provider verification and management
+/bookings               # All bookings overview
+/services               # Service category and pricing management
+/analytics              # Business analytics and reports
+/support                # Customer support tickets
+----------------------------------------------------------------------
